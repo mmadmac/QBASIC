@@ -2,19 +2,13 @@ Screen _NewImage(1366, 980, 32)
 Randomize Timer
 Dim Shared laberinto(20, 20) As String
 Dim Shared row, col, maxloops, currentloop As Integer
-'Dim Shared celdasvisitadas(200) As Zeldas
+
 Const True = 1
 Const False = 0
 Const Pared = "#"
 Const Camino = " "
 
 Cls
-
-Type Zeldas
-    x As Integer
-    y As Integer
-
-End Type
 
 inicialaberinto
 
@@ -40,10 +34,6 @@ Sub inicialaberinto
     Next
     laberinto(row, col) = Camino 'Selecciona la celda origen
 
-    '   celdasvisitadas(0).x = row
-    '   celdasvisitadas(0).y = col
-
-
 End Sub
 
 'Vamos excavando un camino.
@@ -52,11 +42,7 @@ Sub crealaberinto
     RNDX = Int(Rnd * 10) * 2
     RNDY = Int(Rnd * 10) * 2
 
-    'If hayVisitables(RNDX, RNDY) Then Print "Y"; Else Print "N";
-    'Print RNDX, RNDY
-    'Print Str$(celdasvisitadas(0).x) + " " + Str$(celdasvisitadas(0).y) + " " + Str$(celdasvisitadas(0).visitada)
-
-    If hayVisitables(RNDX, RNDY) And laberinto(RNDX, RNDY) = Camino Then 'Taladras en direccion aleatoria donde haya una pared a dos casillas.
+     If hayVisitables(RNDX, RNDY) And laberinto(RNDX, RNDY) = Camino Then 'Taladras en direccion aleatoria donde haya una pared a dos casillas.
 
         'Taladrar el boquete en la direccion elegida
         Select Case Eligeunavisitable(RNDX, RNDY)
